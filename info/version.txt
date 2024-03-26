@@ -1,0 +1,36 @@
+version: beta-0.0.2
+RUS:
+    ОБНОВЛЕНИЯ В ВЕРСИИ beta-0.0.2:
+        - Добавлена возможность установки испытания для себя (в секундах):
+            Теперь вы можете испытать себя, задав параметр challenge во вкладке Settings
+        - Добавлен личный рекорд в игре:
+            Вы можете увидеть его под основным счетом в игре или в меню игры нажав на кнопку Update record.
+            Также теперь вы можете сбросить его во вкладке Settings
+        - Добавлен файл для запуска игры (start.bat):
+            Вы можете создать ярлык файла start.bat и вывести его на рабочий стол для удобного запуска игры
+
+    Исправления в версии beta-0.0.2:
+        - Исправлена ошибка, из-за которой игра не запускалась через терминал (или Python IDLE):
+            В предыдущей версии игра запускалась только если открыть Python в папке с игрой.
+            Теперь игра запускается из любого интерпретатора (Python 3.11.8 и выше) и из любого места
+        - Исправлены хитбоксы:
+            В предыдущей версии хитбоксы были значительно больше самих спрайтов.
+            Теперь хитбоксы стали меньше и играть стало комфортнее
+
+ENG:
+    UPDATES IN beta VERSION-0.0.2:
+        - Added the ability to set a test for yourself (in seconds):
+            Now you can test yourself by setting the challenge parameter in the Settings tab
+        - Added a personal record in the game:
+            You can see it under the main score in the game or in the game menu by clicking on the Update record button.
+            Also now you can reset it in the Settings tab
+        - Added a file to start the game (start.bat):
+            You can create a shortcut to the start.bat file and bring it to the desktop for easy game launch
+            
+    Fixes in beta version-0.0.2:
+        - Fixed a bug that prevented the game from launching via the terminal (or Python IDLE):
+            In the previous version, the game was launched only if you open Python in the game folder.
+            Now the game runs from any interpreter (Python 3.11.8 and higher) and from anywhere
+        - Fixed hitboxes:
+            In the previous version, the hitboxes were significantly larger than the sprites themselves.
+            Now the hitboxes have become smaller and it has become more comfortable to play
