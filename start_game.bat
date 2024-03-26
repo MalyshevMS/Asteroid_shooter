@@ -1,2 +1,2 @@
 @echo off
-exec.bat ..\py_\main.py
+exec.bat main.py
