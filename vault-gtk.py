@@ -68,7 +68,7 @@ def default_s_check():
     echo("Reset?")
     echo("This will set this settings: \n   record:0\n   challenge:0")
     echo("y / n:")
-    do = messagebox.askokcancel("Reset?", "This will set this settings: \nrecord: 0\nchallenge: 0")
+    do = messagebox.askokcancel("Reset?", "This will set this settings: \nrecord: 0\nchallenge: 0\nkill: 0\ndeaths: 0")
     if do:
         echo("$ y")
         echo("reseting all...")
