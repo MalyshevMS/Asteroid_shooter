@@ -20,4 +20,4 @@ path_changed_def = False
 def menu_run():
     default.main()
 
-# default = Menu_cl(0.05, os.getcwd(), "Windows x64", False)
+# default = Menu_cl(os.getcwd(), "Windows x64", False)

@@ -5,101 +5,143 @@ from tkinter import messagebox
 def clear_():
     console.delete(1.0, END)
 
-def cmd_(out: str, bash = False):
+def echo(out: str, bash = False):
     if bash:
         console.insert(END, ">>> " + out + "\n")
     else:
         console.insert(END, out + "\n")
 
 def new_ch():
-    cmd_("ch=" + in_ch.get(), True)
-    cmd_("trying to set challenge to " + in_ch.get() + "...")
+    echo("ch=" + in_ch.get(), True)
+    echo("trying to set challenge to " + in_ch.get() + "...")
     try:
         set_ch(int(in_ch.get()))
-        cmd_("challenge succesfuly setted to " + in_ch.get())
+        echo("challenge succesfuly setted to " + in_ch.get())
     except:
-        cmd_("unexpected error!")
-
+        echo("unexpected error!")
 
 def new_rec():
-    cmd_("rec=" + in_rec.get(), True)
-    cmd_("trying to set record to " + in_rec.get() + "...")
+    echo("rec=" + in_rec.get(), True)
+    echo("trying to set record to " + in_rec.get() + "...")
     try:
         set_r(int(in_rec.get()))
-        cmd_("record succesfuly setted to " + in_rec.get())
+        echo("record succesfuly setted to " + in_rec.get())
     except:
-        cmd_("unexpected error!")
+        echo("unexpected error!")
+
+def new_kill():
+    echo("kill=" + in_kill.get(), True)
+    echo("trying to set kill to " + in_kill.get() + "...")
+    try:
+        set_ch(int(in_kill.get()))
+        echo("kill succesfuly setted to " + in_kill.get())
+    except:
+        echo("unexpected error!")
+
+def new_deaths():
+    echo("deaths=" + in_deaths.get(), True)
+    echo("trying to set deaths to " + in_deaths.get() + "...")
+    try:
+        set_ch(int(in_kill.get()))
+        echo("deaths succesfuly setted to " + in_deaths.get())
+    except:
+        echo("unexpected error!")
 
 def r_rec():
-    cmd_("rec", True)
-    cmd_("record:" + str(read_r()))
+    echo("rec", True)
+    echo("record:" + str(read_r()))
 
 def r_ch():
-    cmd_("ch", True)
-    cmd_("challenge:" + str(read_ch()))
+    echo("ch", True)
+    echo("challenge:" + str(read_ch()))
+
+def r_kill():
+    echo("kill", True)
+    echo("kill:" + str(read_kill()))
+
+def r_deaths():
+    echo("deaths", True)
+    echo("deaths:" + str(read_deaths()))
 
 def default_s_check():
-    cmd_("reset_()", True)
-    cmd_("Reset?")
-    cmd_("This will set this settings: \n   record:0\n   challenge:0")
-    cmd_("y / n:")
+    echo("reset_()", True)
+    echo("Reset?")
+    echo("This will set this settings: \n   record:0\n   challenge:0")
+    echo("y / n:")
     do = messagebox.askokcancel("Reset?", "This will set this settings: \nrecord: 0\nchallenge: 0")
     if do:
-        cmd_("$ y")
-        cmd_("reseting all...")
+        echo("$ y")
+        echo("reseting all...")
         default_call()
-        cmd_("all settings reset")
+        echo("all settings reset")
     else:
-        cmd_("$ n")
-        cmd_("operation canceled")
+        echo("$ n")
+        echo("operation canceled")
 
 window = Tk()
-window.geometry("400x216")
+window.geometry("357x270")
 window.title("Vault control")
 
 btn_ch = Button(window, text="Set new value", command=new_ch)
 btn_rec = Button(window, text="Set new value", command=new_rec)
+btn_kill = Button(window, text="Set new value", command=new_kill)
+btn_deaths = Button(window, text="Set new value", command=new_deaths)
+
+btn_ch.grid(column=2, row=0)
+btn_rec.grid(column=2, row=1)
+btn_kill.grid(column=2, row=2)
+btn_deaths.grid(column=2, row=3)
+
 
 btn_ch_r = Button(window, text="Read value", command=r_ch)
 btn_rec_r = Button(window, text="Read value", command=r_rec)
+btn_kill_r = Button(window, text="Read value", command=r_kill)
+btn_deaths_r = Button(window, text="Read value", command=r_deaths)
+
+btn_ch_r.grid(column=3, row=0)
+btn_rec_r.grid(column=3, row=1)
+btn_kill_r.grid(column=3, row=2)
+btn_deaths_r.grid(column=3, row=3)
+
 
 btn_res = Button(window, text="RESET", command=default_s_check, width=10)
 btn_clr = Button(window, text="CLEAR", command=clear_, width=10)
 
-btn_ch_r.place(x=230, y=-4)
-btn_rec_r.place(x=230, y=21)
-
-btn_ch.place(x=140, y=-4)
-btn_rec.place(x=140, y=21)
-
-btn_res.place(x=300, y=-4)
-btn_clr.place(x=300, y=21)
+btn_res.grid(column=4, row=1)
+btn_clr.grid(column=4, row=2)
 
 
 lbl_ch = Label(window, text="Challenge:")
 lbl_rec = Label(window, text="Record:")
+lbl_kill = Label(window, text="Kill:")
+lbl_deaths = Label(window, text="Deaths:")
 
-lbl_ch.place(x=0, y=0)
-lbl_rec.place(x=0, y=25)
+lbl_ch.grid(column=0, row=0)
+lbl_rec.grid(column=0, row=1)
+lbl_kill.grid(column=0, row=2)
+lbl_deaths.grid(column=0, row=3)
 
 
 in_ch = Entry(window, width=10)
 in_rec = Entry(window, width=10)
+in_kill = Entry(window, width=10)
+in_deaths = Entry(window, width=10)
 
-in_ch.place(x=70, y=0)
-in_rec.place(x=70, y=25)
+in_ch.grid(column=1, row=0)
+in_rec.grid(column=1, row=1)
+in_kill.grid(column=1, row=2)
+in_deaths.grid(column=1, row=3)
 
 
-console = scrolledtext.ScrolledText(window, height=10, width=47)
-console.place(x=0, y=50)
+console = scrolledtext.ScrolledText(window, height=10, width=42)
+console.place(x=0, y=105)
 
-cmd_("vault", True)
+echo("vault", True)
 try:
-    global read_ch, read_r, set_ch, set_r, default_call
-    from vault import read_ch, read_r, set_ch, set_r, default_call
-    cmd_("vault succesfully imported")
-    cmd_("to use graphics use 'vault-gtk'")
-except:
-    cmd_("cannot get access to vault.py")
+    global read_ch, read_r, read_deaths, read_kill, set_ch, set_r, set_deaths, set_kill, default_call
+    from vault import read_ch, read_r, read_deaths, read_kill, set_ch, set_r, set_deaths, set_kill, default_call
+    echo("vault succesfully imported")
+    echo("to use graphics use 'vault-gtk'")
+except: echo("cannot get access to vault.py")
 
 window.mainloop()

@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import scrolledtext
 from os import path
 import subprocess
+import keyboard
 
 folder = path.join(path.dirname(__file__))
 bash = ">>> "
@@ -9,6 +10,9 @@ shell = False
 vault = False
 do = False
 ask = False
+
+def s_return(a):
+    send_()
 
 def send_():
     echo(in_.get(), True)
@@ -20,15 +24,16 @@ def echo(txt, bash_ = False):
     else:
         out.insert(END, txt + "\n")
 
-def exe(com):
-    global default_call
-    global bash, shell, do, ask
+def exe(com: str):
+    """executing command (com) in console window"""
+    global bash, shell
     if not shell:
         if com[:4] == "echo":
             echo(com[5:])
     
-        elif com[:4] == "quit":
-            quit()
+        elif com == "quit" or com == "exit":
+            try: exit()
+            except: quit()
     
         elif com[:4] == "bash":
             bash = com[5:]
@@ -37,8 +42,8 @@ def exe(com):
         elif com == "vault" or com == "vault()":
             echo("trying to import vault...")
             try:
-                global read_ch, read_r, set_ch, set_r, default_call
-                from vault import read_ch, read_r, set_ch, set_r, default_call
+                global read_ch, read_r, set_ch, set_r, default_call, read_deaths, read_kill, set_deaths, set_kill
+                from vault import read_ch, read_r, read_deaths, read_kill, set_ch, set_r, set_deaths, set_kill, default_call
                 echo("vault succesfully imported")
                 echo("to use graphics use 'vault-gtk'")
             except:
@@ -61,9 +66,27 @@ def exe(com):
             except:
                 echo("unexpected error!")
                 echo("maybe you forgot to import valut")
+
+        elif com[:5] == "kill=":
+            echo("trying to set kill to " + com[5:] + "...")
+            try:
+                set_kill(int(com[5:]))
+                echo("kill succesfuly setted to " + com[5:])
+            except:
+                echo("unexpected error!")
+                echo("maybe you forgot to import valut")
+
+        elif com[:7] == "deaths=":
+            echo("trying to set deaths to " + com[7:] + "...")
+            try:
+                set_deaths(int(com[7:]))
+                echo("deaths succesfuly setted to " + com[7:])
+            except:
+                echo("unexpected error!")
+                echo("maybe you forgot to import valut")
         
         elif com == "rec()" or com == "rec":
-            try:echo("record:" + str(read_r()))
+            try: echo("record:" + str(read_r()))
             except:
                 echo("unexpected error!")
                 echo("maybe you forgot to import valut")
@@ -74,6 +97,19 @@ def exe(com):
                 echo("unexpected error!")
                 echo("maybe you forgot to import valut")
             
+
+        elif com == "kill" or com == "kill()":
+            try: echo("kills:" + str(read_kill()))
+            except:
+                echo("unexpected error!")
+                echo("maybe you forgot to import valut")
+
+        elif com == "deaths" or com == "deaths()":
+            try: echo("deaths:" + str(read_deaths()))
+            except:
+                echo("unexpected error!")
+                echo("maybe you forgot to import valut")
+        
         elif com == "game":
             echo("starting game...")
             echo("to use console close game window")
@@ -85,14 +121,14 @@ def exe(com):
             subprocess.call("python " + '"' + folder + "\menu.py" + '"', shell=True)
 
         elif com == "vault-gtk":
-                echo("starting vault-gtk...")
-                echo("to use console close vault-gtk window")
-                subprocess.call("python " + '"' + folder + "\\vault-gtk.py" + '"', shell=True)
+            echo("starting vault-gtk...")
+            echo("to use console close vault-gtk window")
+            subprocess.call("python " + '"' + folder + "\\vault-gtk.py" + '"', shell=True)
 
-        elif com == "shell" or com == "pwsh":
-            bash = "PS: "
-            echo("now commands will be redirected to cmd.exe  with bash " + '"' + bash + '"')
-            echo("to escape use 'Pstop'")
+        elif com == "shell" or com == "cmd":
+            bash = "cmd: "
+            echo("now commands will be redirected to cmd.exe with bash:\n" + '\t"' + bash + '"')
+            echo("to escape use 'exit'")
             shell = True
 
         elif com[:4] == "help":
@@ -114,11 +150,11 @@ def exe(com):
                 echo("maybe you forgot to import vault")
 
         else:
-            echo("unknown command")
+            echo("ERROR: command " + com + " are not existing or can not be used")
 
     elif shell:
-        if com == "Pstop":
-            echo("exiting powershell...")
+        if com == "exit":
+            echo("exiting cmd...")
             bash = ">>> "
             shell = False
         else:
@@ -136,8 +172,12 @@ def show_coms():
     echo("\tbash")
     echo("\tch=")
     echo("\trec=")
+    echo("\tkill=")
+    echo("\tdeaths=")
     echo("\trec or rec()")
     echo("\tch or ch()")
+    echo("\tkill or kill()")
+    echo("\tdeaths or deaths()")
     echo("\tmenu")
     echo("\tgame")
     echo("\tvault")
@@ -166,11 +206,23 @@ def get_help(com):
     elif com == "rec=":
          echo("needs to import vault\nset variable record to value after '='")
 
+    elif com == "kill=":
+         echo("needs to import vault\nset variable kill to value after '='")
+
+    elif com == "deaths=":
+         echo("needs to import vault\nset deaths record to value after '='")
+
     elif com == "rec()" or com == "rec":
         echo("needs to import vault\nreads record value")
 
     elif com == "ch()" or com == "ch":
         echo("needs to import vault\nreads record value")
+
+    elif com == "kill()" or com == "kill":
+        echo("needs to import vault\nreads kill value")
+
+    elif com == "deaths()" or com == "deaths":
+        echo("needs to import vault\nreads deaths value")
 
     elif com == "game":
         echo("starts game (to use console close game window)")
@@ -203,6 +255,7 @@ out.place(x=0, y=0)
 
 in_ = Entry(cmd, width=59)
 in_.place(x=0, y=330)
+in_.focus()
 
 send = Button(cmd, text="Send" , command=send_)
 send.place(x=360, y=328)
@@ -212,5 +265,7 @@ clear.place(x=402, y=328)
 
 ext = Button(cmd, text="QUIT", command=quit)
 ext.place(x=460, y=328)
+
+cmd.bind("<Return>", s_return)
 
 cmd.mainloop()

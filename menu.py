@@ -141,7 +141,7 @@ class Menu_cl():
 
         btn_settings_chnge_folder = Button(tab_settings_menu, text="Change game folder...", command=Menu_cl.change_game_path)
         btn_settings_apply = Button(tab_settings_menu, text="Apply", command=Menu_cl.apply)
-        btn_settings_reset = Button(tab_settings_menu, text="Reset all (current record, challenge)", command=default_s)
+        btn_settings_reset = Button(tab_settings_menu, text="Reset all (current record and etc...)", command=default_s)
         btn_settings_vault = Button(tab_settings_menu, text="Vault", command=vault_gtk)
         btn_settings_console = Button(tab_settings_menu, text="Console", command=console)
 

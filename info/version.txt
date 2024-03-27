@@ -1,36 +1,58 @@
-version: beta-0.0.2
+version: beta-0.0.3
 RUS:
-    ОБНОВЛЕНИЯ В ВЕРСИИ beta-0.0.2:
-        - Добавлена возможность установки испытания для себя (в секундах):
-            Теперь вы можете испытать себя, задав параметр challenge во вкладке Settings
-        - Добавлен личный рекорд в игре:
-            Вы можете увидеть его под основным счетом в игре или в меню игры нажав на кнопку Update record.
-            Также теперь вы можете сбросить его во вкладке Settings
-        - Добавлен файл для запуска игры (start.bat):
-            Вы можете создать ярлык файла start.bat и вывести его на рабочий стол для удобного запуска игры
-
-    Исправления в версии beta-0.0.2:
-        - Исправлена ошибка, из-за которой игра не запускалась через терминал (или Python IDLE):
-            В предыдущей версии игра запускалась только если открыть Python в папке с игрой.
-            Теперь игра запускается из любого интерпретатора (Python 3.11.8 и выше) и из любого места
-        - Исправлены хитбоксы:
-            В предыдущей версии хитбоксы были значительно больше самих спрайтов.
-            Теперь хитбоксы стали меньше и играть стало комфортнее
+    ОБНОВЛЕНИЯ В ВЕРСИИ beta-0.0.3:
+        - Добавлена консоль:
+            Запустив файл console.py или нажав на кнопку Console в настройках, откроется консоль.
+            Чтобы получить список доступых комманд наберите help.
+            Чтобы получить справку по комманде наберите help [комманда]
+        - Добавлен графический интерфейс для модуля vault:
+            Запустив файл vault-gtk.py или нажав на кнопку Vault в настройках, откроется меню управления файлами сохранения.
+        - Добавлен файл exec.bat:
+            Запустив терминал в папке с игрой вы можете выполнить комманду exec.bat [имя скрипта] после чего запустится скрипт, имя которого вы написали после exec.bat
+            Пример: exec.bat game.py - запускает игру
+        - Добавлен ярлык для запуска игры:
+            Запустив файл GAME.lnk у вас запустится игра
+        - Добавлен счетчик смертей:
+            В верхней части окна с игрой появился счетчик смертей.
+            За каждое поражение число смертей увеличивается на 1
+        - Добавлен счетчик убийств:
+            В верхней части окна с игрой появился счетчик убийств.
+            За каждое попадание по астероиду число убийств увеличивается на 1
+        - Игра теперь на Github:
+            Перейдя по ссылке https://github.com/MalyshevMS/Asteroid_shooter вы попадете на репозиторий github с игрой.
+            От туда вы сможете скачать игру или клонировать репозиторий с игрой себе на компьютер
+            Если у вас есть предложения на улучшение игры, напишите мне в Telegramm (https://t.me/MatMal29) с хэштегом #Asteroid_shooter
+    Исправления в версии beta-0.0.3:
+        - Исправлена ошибка с запуском игры через start.bat:
+            В предыдущей версии игра не всегда запускалась через start.bat.
+            Теперь игру можно запустить через start_game.bat
+        - Исправлены прочие незначительные ошибки
 
 ENG:
-    UPDATES IN beta VERSION-0.0.2:
-        - Added the ability to set a test for yourself (in seconds):
-            Now you can test yourself by setting the challenge parameter in the Settings tab
-        - Added a personal record in the game:
-            You can see it under the main score in the game or in the game menu by clicking on the Update record button.
-            Also now you can reset it in the Settings tab
-        - Added a file to start the game (start.bat):
-            You can create a shortcut to the start.bat file and bring it to the desktop for easy game launch
-            
-    Fixes in beta version-0.0.2:
-        - Fixed a bug that prevented the game from launching via the terminal (or Python IDLE):
-            In the previous version, the game was launched only if you open Python in the game folder.
-            Now the game runs from any interpreter (Python 3.11.8 and higher) and from anywhere
-        - Fixed hitboxes:
-            In the previous version, the hitboxes were significantly larger than the sprites themselves.
-            Now the hitboxes have become smaller and it has become more comfortable to play
+    UPDATES IN beta-0.0.3:
+        - Added console:
+            By running the file console.py or by clicking on the Console button in the settings, the console will open.
+            To get a list of available commands, type help.
+            To get help on the command, type help [command]
+        - Added a graphical interface for the vault module:
+            By running the file vault-gtk.py or by clicking on the Vault button in the settings, the Save file management menu will open.
+        - Added exec.bat file:
+            By launching the terminal in the folder with the game, you can execute exec.bat [script name] after which the script whose name you wrote after exec.bat
+            Example: exec.bat game.py - starts the game
+        - Added a shortcut to launch the game:
+            By running the GAME.lnk file, the game will start
+        - Added a death counter:
+            A death counter appeared at the top of the game window.
+            For each defeat, the number of deaths increases by 1
+        - Added a kill counter:
+            A kill counter appeared at the top of the game window.
+            For each hit on an asteroid, the number of kills increases by 1
+        - The game is now on Github:
+            By clicking on the link https://github.com/MalyshevMS/Asteroid_shooter you will be taken to the github repository with the game.
+            From there you can download the game or clone the repository with the game to your computer
+            If you have any suggestions for improving the game, write to me in Telegram (https://t.me/MatMal29 ) with the hashtag #Asteroid_shooter
+    Fixes in beta version-0.0.3:
+        - Fixed a bug with starting the game via start.bat:
+            In the previous version, the game did not always start via start.bat.
+            Now the game can be started via start_game.bat
+        - Fixed other minor bugs

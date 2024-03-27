@@ -184,6 +184,10 @@ while running:
 
     # collision checking (bullet, mobs)
     hits = pygame.sprite.groupcollide(mobs, bullets, True, True)
+
+    if hits:
+        set_kill(read_kill() + 1)
+
     for hit in hits:
         score += 50 - hit.radius
         m = Mob()
@@ -196,6 +200,7 @@ while running:
     # collision checking (player, mobs)
     hits = pygame.sprite.spritecollide(player, mobs, False, pygame.sprite.collide_circle)
     if hits:
+        set_deaths(read_deaths() + 1)
         running = False
 
     # render
@@ -205,6 +210,8 @@ while running:
     draw_text(screen, str(score), 30, WIDTH / 2, 10)
     draw_text(screen, str(timer()), 30, 40, 0)
     draw_text(screen, str(read_r()), 23, WIDTH / 2, 40)
+    draw_text(screen, "Deaths: " + str(read_deaths()), 23, WIDTH - 70, 10)
+    draw_text(screen, "Kills: " + str(read_kill()), 23, WIDTH - 80, 40)
     
     if read_ch() != 0:
         if time_ > (read_ch() * 100):
