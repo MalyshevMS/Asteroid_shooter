@@ -144,7 +144,7 @@ def exe(com: str):
             try:
                 echo("reseting all...")
                 default_call()
-                echo("all settings reset")
+                echo("all settings reseted")
             except:
                 echo("unexpected error!")
                 echo("maybe you forgot to import vault")
@@ -182,7 +182,7 @@ def show_coms():
     echo("\tgame")
     echo("\tvault")
     echo("\tvault-gtk")
-    echo("\tshell or pwsh")
+    echo("\tshell or cmd")
     echo("\tclear")
     echo("\tdefault_ or default_()")
     echo("\ncommands rec, rec(), ch, ch(), deaths, deaths(), kill, \nkill(), ch=, rec=, kill=, deaths=, default_, default_() \nruns only after 'vault' command")
@@ -233,7 +233,7 @@ def get_help(com):
     elif com == "vault-gtk":
         echo("starts graphic version of vault (to use console close vault-gtk window)")
 
-    elif com == "shell" or com == "pwsh":
+    elif com == "shell" or com == "cmd":
         echo("redirect commands to cmd.exe with bash 'PS: '")
         echo("to stop use Pstop command")
 
@@ -241,7 +241,7 @@ def get_help(com):
         echo("clearing console")
     
     elif com == "default_" or "default_()":
-        echo("needs to import vault\nreset challenge and record to default:\n\trecord:0\n\tchallnge:0")
+        echo("needs to import vault\nreset challenge and record to default:\n\trecord:0\n\tchallnge:0\n\tkill:0\n\tdeaths:0")
 
     else:
         echo("unknown command")
