@@ -42,7 +42,7 @@ def new_deaths():
     echo("deaths=" + in_deaths.get(), True)
     echo("trying to set deaths to " + in_deaths.get() + "...")
     try:
-        set_deaths(int(in_kill.get()))
+        set_deaths(int(in_deaths.get()))
         echo("deaths succesfuly setted to " + in_deaths.get())
     except:
         echo("unexpected error!")
