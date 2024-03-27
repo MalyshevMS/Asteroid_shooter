@@ -185,7 +185,7 @@ def show_coms():
     echo("\tshell or pwsh")
     echo("\tclear")
     echo("\tdefault_ or default_()")
-    echo("\ncommands rec, rec(), ch, ch(), ch=, rec=, default_, \ndefault_() runs only after 'vault' command")
+    echo("\ncommands rec, rec(), ch, ch(), deaths, deaths(), kill, \nkill(), ch=, rec=, kill=, deaths=, default_, default_() \nruns only after 'vault' command")
 
 def get_help(com):
     if com == "echo":
