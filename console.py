@@ -235,7 +235,7 @@ def get_help(com):
 
     elif com == "shell" or com == "cmd":
         echo("redirect commands to cmd.exe with bash 'PS: '")
-        echo("to stop use Pstop command")
+        echo("to stop use exit command")
 
     elif com == "clear":
         echo("clearing console")
