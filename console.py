@@ -74,7 +74,7 @@ def exe(com: str):
                 echo("kill succesfuly setted to " + com[5:])
             except:
                 echo("unexpected error!")
-                echo("maybe you forgot to import valut")
+                echo("maybe you forgot to import vault")
 
         elif com[:7] == "deaths=":
             echo("trying to set deaths to " + com[7:] + "...")
@@ -83,32 +83,32 @@ def exe(com: str):
                 echo("deaths succesfuly setted to " + com[7:])
             except:
                 echo("unexpected error!")
-                echo("maybe you forgot to import valut")
+                echo("maybe you forgot to import vault")
         
         elif com == "rec()" or com == "rec":
             try: echo("record:" + str(read_r()))
             except:
                 echo("unexpected error!")
-                echo("maybe you forgot to import valut")
+                echo("maybe you forgot to import vault")
         
         elif com == "ch()" or com == "ch":
             try: echo("challenge:" + str(read_ch()))
             except:
                 echo("unexpected error!")
-                echo("maybe you forgot to import valut")
+                echo("maybe you forgot to import vault")
             
 
         elif com == "kill" or com == "kill()":
             try: echo("kills:" + str(read_kill()))
             except:
                 echo("unexpected error!")
-                echo("maybe you forgot to import valut")
+                echo("maybe you forgot to import vault")
 
         elif com == "deaths" or com == "deaths()":
             try: echo("deaths:" + str(read_deaths()))
             except:
                 echo("unexpected error!")
-                echo("maybe you forgot to import valut")
+                echo("maybe you forgot to import vault")
         
         elif com == "game":
             echo("starting game...")
