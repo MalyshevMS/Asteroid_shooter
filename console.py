@@ -216,7 +216,7 @@ def get_help(com):
         echo("needs to import vault\nreads record value")
 
     elif com == "ch()" or com == "ch":
-        echo("needs to import vault\nreads record value")
+        echo("needs to import vault\nreads challenge value")
 
     elif com == "kill()" or com == "kill":
         echo("needs to import vault\nreads kill value")
