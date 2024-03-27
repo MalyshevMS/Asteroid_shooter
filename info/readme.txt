@@ -1,4 +1,4 @@
-RU:
+RUS:
     Внимание!!!
         У вас возможно не установлена библиотека pygame и библиотека keyboard
         Как это исправить?
@@ -9,9 +9,9 @@ RU:
     
 ENG:
     Attention!!!
-        You may not have the pygame library installed
+    You may not have the pygame library and keyboard library installed
         How can I fix this?
-            open the console Win + R -> cmd -> Enter (on Linux: Ctrl + Alt + T), there we register pip install pygame (or pip3 install pygame); ; pip install keyboard (or pip3 install keyboard)
-        To run the program only through "main.py"
+            open the console Win + R -> cmd -> Enter (on Linux: Ctrl + Alt + T), there we register pip install pygame (or pip3 install pygame); pip install keyboard (or pip3 install keyboard)
+        Run the program only through "main.py "
         Do not close the console that opens at startup!!!
     Read more about the version of the game in version.txt
