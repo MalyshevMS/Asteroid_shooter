@@ -28,6 +28,8 @@ pygame.display.set_caption("Game")
 clock = pygame.time.Clock()
 font_name = pygame.font.match_font('arial')
 img_dir = path.join(path.dirname(__file__), 'img')
+snd_dir = path.join(path.dirname(__file__), 'snd')
+vol = read_vol()
 
 
 def draw_text(surf, text, size, x, y):
@@ -83,6 +85,7 @@ class Player(pygame.sprite.Sprite):
         bullet = Bullet(self.rect.centerx, self.rect.top)
         all_sprites.add(bullet)
         bullets.add(bullet)
+        shoot_sound.play()
 
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
@@ -151,6 +154,18 @@ meteor_list = ['meteorBrown_big1.png', 'meteorBrown_med1.png', 'meteorBrown_med1
 for img in meteor_list:
     meteor_images.append(pygame.image.load(path.join(img_dir, img)).convert())
 
+
+# music
+shoot_sound = pygame.mixer.Sound(path.join(snd_dir, 'pew.wav'))
+explode_sounds = []
+for i in ["explode.wav"]:
+    explode_sounds.append(pygame.mixer.Sound(path.join(snd_dir, i)))
+pygame.mixer.music.load(path.join(snd_dir, 'tetris-theme.mp3'))
+pygame.mixer.music.set_volume(vol)
+explode_sounds[0].set_volume(vol)
+shoot_sound.set_volume(vol)
+
+
 all_sprites = pygame.sprite.Group()
 mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
@@ -158,6 +173,7 @@ player = Player()
 all_sprites.add(player)
 score = 0
 time_ = 0
+pygame.mixer.music.play(loops=-1)
 
 for i in range(8):
     m = Mob()
@@ -185,11 +201,12 @@ while running:
     # collision checking (bullet, mobs)
     hits = pygame.sprite.groupcollide(mobs, bullets, True, True)
 
-    if hits:
-        set_kill(read_kill() + 1)
+    # if hits:
+    #     set_kill(read_kill() + 1)
 
     for hit in hits:
         score += 50 - hit.radius
+        explode_sounds[0].play()
         m = Mob()
         all_sprites.add(m)
         mobs.add(m)
@@ -200,7 +217,7 @@ while running:
     # collision checking (player, mobs)
     hits = pygame.sprite.spritecollide(player, mobs, False, pygame.sprite.collide_circle)
     if hits:
-        set_deaths(read_deaths() + 1)
+        # set_deaths(read_deaths() + 1)
         running = False
 
     # render
@@ -210,8 +227,8 @@ while running:
     draw_text(screen, str(score), 30, WIDTH / 2, 10)
     draw_text(screen, str(timer()), 30, 40, 0)
     draw_text(screen, str(read_r()), 23, WIDTH / 2, 40)
-    draw_text(screen, "Deaths: " + str(read_deaths()), 23, WIDTH - 70, 10)
-    draw_text(screen, "Kills: " + str(read_kill()), 23, WIDTH - 80, 40)
+    # draw_text(screen, "Deaths: " + str(read_deaths()), 23, WIDTH - 70, 10)
+    # draw_text(screen, "Kills: " + str(read_kill()), 23, WIDTH - 80, 40)
     
     if read_ch() != 0:
         if time_ > (read_ch() * 100):

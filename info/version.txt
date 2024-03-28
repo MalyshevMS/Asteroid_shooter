@@ -1,6 +1,18 @@
-version: beta-0.0.3
+version: beta-0.0.4
 
 RUS:
+    Микро-обновления в версии beta-0.0.4:
+        - Добавлена фоновая музыка и прочие звуки:
+            Теперь во время игры будет играть музыка из тетриса.
+            Во время стрельбы будет воспроизводиться звук стрельбы.
+            Во время попадания в астероид будет воспроизводиться звук взрыва.
+        - Убран счетчик убийств и смертей:
+            Счетчик убийств и смертей создавал большую нагрузку.
+            В целях оптимизации он был отключен (но не убран на совсем)
+            Если вы хотите включить его уберите хэштег (#) в строках 204, 205, 220 в файле game.py, но делаете это на свой страх и риск.
+            За сгоревший/сломанный/нерабочий ПК/процессор/видеокарту/устройство записи информации/дисковод/дискетовод/ОЗУ/монитор/веб-камеру/клавиатуру/мышь/геймпад/звуковую гарнитуру/гарнитуру дополненной, смешанной и виртуальной реальности
+            в результате включения счетчика несете уголовную/административную/социальную ответственность ТОЛЬКО ТОТ, КТО ВКЛЮЧИЛ ЭТОТ СЧЕТЧИК
+
     ОБНОВЛЕНИЯ В ВЕРСИИ beta-0.0.3:
         - Добавлена консоль:
             Запустив файл console.py или нажав на кнопку Console в настройках, откроется консоль.
@@ -13,16 +25,17 @@ RUS:
             Пример: exec.bat game.py - запускает игру
         - Добавлен ярлык для запуска игры:
             Запустив файл GAME.lnk у вас запустится игра
-        - Добавлен счетчик смертей:
+        - Добавлен счетчик смертей (не актульно для текущей версии):
             В верхней части окна с игрой появился счетчик смертей.
             За каждое поражение число смертей увеличивается на 1
-        - Добавлен счетчик убийств:
+        - Добавлен счетчик убийств (не актульно для текущей версии):
             В верхней части окна с игрой появился счетчик убийств.
             За каждое попадание по астероиду число убийств увеличивается на 1
         - Игра теперь на Github:
             Перейдя по ссылке https://github.com/MalyshevMS/Asteroid_shooter вы попадете на репозиторий github с игрой.
             От туда вы сможете скачать игру или клонировать репозиторий с игрой себе на компьютер
             Если у вас есть предложения на улучшение игры, напишите мне в Telegramm (https://t.me/MatMal29) с хэштегом #Asteroid_shooter
+
     Исправления в версии beta-0.0.3:
         - Исправлена ошибка с запуском игры через start.bat:
             В предыдущей версии игра не всегда запускалась через start.bat.
@@ -30,6 +43,18 @@ RUS:
         - Исправлены прочие незначительные ошибки
 
 ENG:
+    Micro-updates in beta-0.0.4:
+        - Added background music and other sounds:
+            Tetris music will now play during the game.
+            The sound of shooting will be played during the shooting.
+            During an asteroid impact, the sound of an explosion will be played.
+        - Removed the kill and death counter:
+            The counter of kills and deaths created a heavy load.
+            For optimization purposes, it has been disabled (but not removed at all)
+            If you want to include it, remove the hashtag (#) in lines 204, 205, 220 in the file game.py but you do it at your own risk.
+            For a burnt/broken/non-working PC/processor/video card/information recorder/disk drive/floppy disk drive/RAM/monitor/webcam/keyboard/mouse/gamepad/sound headset/augmented, mixed and virtual reality headset
+            as a result of turning on the counter, ONLY THE ONE WHO TURNED ON THIS COUNTER bears criminal/administrative/social responsibility
+
     UPDATES IN beta-0.0.3:
         - Added console:
             By running the file console.py or by clicking on the Console button in the settings, the console will open.

@@ -47,6 +47,15 @@ def new_deaths():
     except:
         echo("unexpected error!")
 
+def new_vol():
+    echo("vol=" + in_vol.get(), True)
+    echo("trying to set vol to " + in_vol.get() + "...")
+    try:
+        set_vol(float(in_vol.get()))
+        echo("vol succesfuly setted to " + in_vol.get())
+    except:
+        echo("unexpected error!")
+
 def r_rec():
     echo("rec", True)
     echo("record:" + str(read_r()))
@@ -63,12 +72,16 @@ def r_deaths():
     echo("deaths", True)
     echo("deaths:" + str(read_deaths()))
 
+def r_vol():
+    echo("vol", True)
+    echo("volume:" + str(read_vol()))
+
 def default_s_check():
     echo("reset_()", True)
     echo("Reset?")
     echo("This will set this settings: \n   record:0\n   challenge:0")
     echo("y / n:")
-    do = messagebox.askokcancel("Reset?", "This will set this settings: \nrecord: 0\nchallenge: 0\nkill: 0\ndeaths: 0")
+    do = messagebox.askokcancel("Reset?", "This will set this settings: \nrecord: 0\nchallenge: 0\nkill: 0\ndeaths: 0\nvolume: 0.4")
     if do:
         echo("$ y")
         echo("reseting all...")
@@ -79,29 +92,33 @@ def default_s_check():
         echo("operation canceled")
 
 window = Tk()
-window.geometry("357x270")
+window.geometry("357x294")
 window.title("Vault control")
 
 btn_ch = Button(window, text="Set new value", command=new_ch)
 btn_rec = Button(window, text="Set new value", command=new_rec)
 btn_kill = Button(window, text="Set new value", command=new_kill)
 btn_deaths = Button(window, text="Set new value", command=new_deaths)
+btn_vol = Button(window, text="Set new value", command=new_vol)
 
 btn_ch.grid(column=2, row=0)
 btn_rec.grid(column=2, row=1)
 btn_kill.grid(column=2, row=2)
 btn_deaths.grid(column=2, row=3)
+btn_vol.grid(column=2, row=4)
 
 
 btn_ch_r = Button(window, text="Read value", command=r_ch)
 btn_rec_r = Button(window, text="Read value", command=r_rec)
 btn_kill_r = Button(window, text="Read value", command=r_kill)
 btn_deaths_r = Button(window, text="Read value", command=r_deaths)
+btn_vol_r = Button(window, text="Read value", command=r_vol)
 
 btn_ch_r.grid(column=3, row=0)
 btn_rec_r.grid(column=3, row=1)
 btn_kill_r.grid(column=3, row=2)
 btn_deaths_r.grid(column=3, row=3)
+btn_vol_r.grid(column=3, row=4)
 
 
 btn_res = Button(window, text="RESET", command=default_s_check, width=10)
@@ -115,31 +132,35 @@ lbl_ch = Label(window, text="Challenge:")
 lbl_rec = Label(window, text="Record:")
 lbl_kill = Label(window, text="Kill:")
 lbl_deaths = Label(window, text="Deaths:")
+lbl_vol = Label(window, text="Volume:")
 
 lbl_ch.grid(column=0, row=0)
 lbl_rec.grid(column=0, row=1)
 lbl_kill.grid(column=0, row=2)
 lbl_deaths.grid(column=0, row=3)
+lbl_vol.grid(column=0, row=4)
 
 
 in_ch = Entry(window, width=10)
 in_rec = Entry(window, width=10)
 in_kill = Entry(window, width=10)
 in_deaths = Entry(window, width=10)
+in_vol = Entry(window, width=10)
 
 in_ch.grid(column=1, row=0)
 in_rec.grid(column=1, row=1)
 in_kill.grid(column=1, row=2)
 in_deaths.grid(column=1, row=3)
+in_vol.grid(column=1, row=4)
 
 
 console = scrolledtext.ScrolledText(window, height=10, width=42)
-console.place(x=0, y=105)
+console.place(x=0, y=130)
 
 echo("vault", True)
 try:
-    global read_ch, read_r, read_deaths, read_kill, set_ch, set_r, set_deaths, set_kill, default_call
-    from vault import read_ch, read_r, read_deaths, read_kill, set_ch, set_r, set_deaths, set_kill, default_call
+    global read_ch, read_r, set_ch, set_r, default_call, read_deaths, read_kill, read_vol, set_deaths, set_kill, set_vol
+    from vault import read_ch, read_r, read_deaths, read_kill, read_vol, set_ch, set_r, set_deaths, set_kill, set_vol, default_call
     echo("vault succesfully imported")
     echo("to use graphics use 'vault-gtk'")
 except: echo("cannot get access to vault.py")

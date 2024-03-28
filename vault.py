@@ -5,6 +5,7 @@ record_d = 0
 ch_d = 0
 kill_d = 0
 deaths_d = 0
+vol_d = 0.4
 
 def default_call():
     with open('ch.sav', 'wb') as f:
@@ -17,7 +18,10 @@ def default_call():
         pickle.dump(deaths_d, f)
 
     with open("kill.sav", "wb") as f:
-        pickle.dump(kill_d, f)    
+        pickle.dump(kill_d, f)   
+
+    with open("vol.sav", "wb") as f:
+            pickle.dump(vol_d, f) 
 
 def default_s():
     run = messagebox.askyesno("WARNING", "This will reset all your progress. Continue?")
@@ -36,6 +40,9 @@ def default_s():
         with open("kill.sav", "wb") as f:
             pickle.dump(kill_d, f)
 
+        with open("vol.sav", "wb") as f:
+            pickle.dump(vol_d, f)
+
 def set_r(val):
     with open('rec.sav', 'wb') as f:
         pickle.dump(val, f)
@@ -50,6 +57,10 @@ def set_kill(val):
 
 def set_deaths(val):
     with open("deaths.sav", "wb") as f:
+        pickle.dump(val, f)
+
+def set_vol(val):
+    with open("vol.sav", "wb") as f:
         pickle.dump(val, f)
 
 def read_r():
@@ -71,5 +82,10 @@ def read_deaths():
     with open('deaths.sav', 'rb') as f:
         deaths = pickle.load(f)
     return deaths
+
+def read_vol():
+    with open('vol.sav', 'rb') as f:
+        vol = pickle.load(f)
+    return vol
 
 # default_s() # !!!WARNING!!! uncomment it only if you wanna reset your record and challenge!!!

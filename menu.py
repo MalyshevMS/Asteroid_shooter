@@ -45,6 +45,7 @@ class Menu_cl():
             if combo_settings_os.get() != "GNU/Linux support soon":
                 Menu_cl.current_os = combo_settings_os.get()
                 set_ch(int(spin_challenge.get()))
+                set_vol(int(spin_vol.get()) / 10)
                 if Menu_cl.path_changed == False:
                     Menu_cl.game_path = combo_settings_game_folder.get()
                 elif Menu_cl.path_changed == True:
@@ -76,7 +77,7 @@ class Menu_cl():
         
         global lbl_settings_folder, lbl_settings_os
         global btn_settings_apply, btn_settings_chnge_folder
-        global combo_settings_game_folder, combo_settings_os, spin_challenge
+        global combo_settings_game_folder, combo_settings_os, spin_challenge, spin_vol
 
         global lbl_help_contact, btn_help_contact2
 
@@ -122,11 +123,13 @@ class Menu_cl():
         lbl_settings_folder = Label(tab_settings_menu, text="Game folder: ")
         lbl_settings_controls = Label(tab_settings_menu, text="Controls: " + "\n" + "WASD - movement" + "\n" + "SPACE - shoot", font=("Arial bold", 15))
         lbl_settings_challenge = Label(tab_settings_menu, text="Set challenge (sec):")
+        lbl_settings_vol = Label(tab_settings_menu, text="Set volume:")
 
         lbl_settings_os.place(x=10, y=10)
         lbl_settings_folder.place(x=10, y=40)
         lbl_settings_controls.place(x=110, y=110)
         lbl_settings_challenge.place(x=10, y=70)
+        lbl_settings_vol.place(x=180, y=70)
 
         combo_settings_os = Combobox(tab_settings_menu)
         combo_settings_os["values"] = ("Windows x64", "Windows x32", "GNU/Linux support soon")
@@ -154,6 +157,9 @@ class Menu_cl():
 
         spin_challenge = Spinbox(tab_settings_menu, from_=0, to=600, width=5, textvariable=read_ch())
         spin_challenge.place(x=120, y=72)
+
+        spin_vol = Spinbox(tab_settings_menu, from_=0, to=20, width=5, textvariable=read_vol() * 10)
+        spin_vol.place(x=250, y=72)
         #-------------------------------------tab_settings_menu----------------------------------------------#
 
 

@@ -42,8 +42,8 @@ def exe(com: str):
         elif com == "vault" or com == "vault()":
             echo("trying to import vault...")
             try:
-                global read_ch, read_r, set_ch, set_r, default_call, read_deaths, read_kill, set_deaths, set_kill
-                from vault import read_ch, read_r, read_deaths, read_kill, set_ch, set_r, set_deaths, set_kill, default_call
+                global read_ch, read_r, set_ch, set_r, default_call, read_deaths, read_kill, read_vol, set_deaths, set_kill, set_vol
+                from vault import read_ch, read_r, read_deaths, read_kill, read_vol, set_ch, set_r, set_deaths, set_kill, set_vol, default_call
                 echo("vault succesfully imported")
                 echo("to use graphics use 'vault-gtk'")
             except:
@@ -84,6 +84,15 @@ def exe(com: str):
             except:
                 echo("unexpected error!")
                 echo("maybe you forgot to import vault")
+
+        elif com[:4] == "vol=":
+            echo("trying to set volume to " + com[4:] + "...")
+            try:
+                set_vol(int(com[4:]))
+                echo("volume succesfuly setted to " + com[4:])
+            except:
+                echo("unexpected error!")
+                echo("maybe you forgot to import vault")
         
         elif com == "rec()" or com == "rec":
             try: echo("record:" + str(read_r()))
@@ -106,6 +115,12 @@ def exe(com: str):
 
         elif com == "deaths" or com == "deaths()":
             try: echo("deaths:" + str(read_deaths()))
+            except:
+                echo("unexpected error!")
+                echo("maybe you forgot to import vault")
+
+        elif com == "vol" or com == "vol()":
+            try: echo("volume:" + str(read_vol()))
             except:
                 echo("unexpected error!")
                 echo("maybe you forgot to import vault")
@@ -161,7 +176,6 @@ def exe(com: str):
             echo(subprocess.getoutput(com))
             # except: echo("ERROR: command are not existing or can not be used")
 
-
 def clear_():
     out.delete(1.0, END)
 
@@ -174,10 +188,12 @@ def show_coms():
     echo("\trec=")
     echo("\tkill=")
     echo("\tdeaths=")
+    echo("\tvol=")
     echo("\trec or rec()")
     echo("\tch or ch()")
     echo("\tkill or kill()")
     echo("\tdeaths or deaths()")
+    echo("\tvol or vol()")
     echo("\tmenu")
     echo("\tgame")
     echo("\tvault")
@@ -210,7 +226,10 @@ def get_help(com):
          echo("needs to import vault\nset variable kill to value after '='")
 
     elif com == "deaths=":
-         echo("needs to import vault\nset deaths record to value after '='")
+         echo("needs to import vault\nset variable deaths to value after '='")
+
+    elif com == "vol=":
+         echo("needs to import vault\nset variable vol to value after '='")
 
     elif com == "rec()" or com == "rec":
         echo("needs to import vault\nreads record value")
@@ -224,6 +243,9 @@ def get_help(com):
     elif com == "deaths()" or com == "deaths":
         echo("needs to import vault\nreads deaths value")
 
+    elif com == "vol()" or com == "vol":
+        echo("needs to import vault\nreads vol value")
+
     elif com == "game":
         echo("starts game (to use console close game window)")
 
@@ -234,14 +256,14 @@ def get_help(com):
         echo("starts graphic version of vault (to use console close vault-gtk window)")
 
     elif com == "shell" or com == "cmd":
-        echo("redirect commands to cmd.exe with bash 'PS: '")
+        echo("redirect commands to cmd.exe with bash 'cmd: '")
         echo("to stop use exit command")
 
     elif com == "clear":
         echo("clearing console")
     
     elif com == "default_" or "default_()":
-        echo("needs to import vault\nreset challenge and record to default:\n\trecord:0\n\tchallnge:0\n\tkill:0\n\tdeaths:0")
+        echo("needs to import vault\nreset challenge, record and etc. to default:\n\trecord:0\n\tchallnge:0\n\tkill:0\n\tdeaths:0\n\tvolume:0.4")
 
     else:
         echo("unknown command")
