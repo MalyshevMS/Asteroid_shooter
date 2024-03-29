@@ -184,22 +184,19 @@ def game():
     subprocess.call(fold, shell=True)
     print(fold)
 
-def game_thread():
-    Thread(target=game).start()
+def game_thread(): Thread(target=game).start()
 
 def vault_gtk():
     fold = "python " + '"' + Menu_cl.game_path + "\\vault-gtk.py" + '"'
     subprocess.call(fold, shell=True)
 
-def vault_gtk_thread():
-    Thread(target=vault_gtk).start() 
+def vault_gtk_thread(): Thread(target=vault_gtk).start() 
 
 def console():
     fold = "python " + '"' + Menu_cl.game_path + "\console.py" + '"'
     subprocess.call(fold, shell=True)
 
-def console_thread():
-    Thread(target=console).start()
+def console_thread(): Thread(target=console).start()
 
 
 default = Menu_cl(path.join(path.dirname(__file__)), "Windows x64", False, "")
