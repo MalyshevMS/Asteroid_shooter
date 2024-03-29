@@ -9,6 +9,7 @@ from tkinter import scrolledtext
 import subprocess
 import webbrowser
 from vault import *
+from threading import Thread
 
 class Menu_cl():
     """
@@ -107,7 +108,7 @@ class Menu_cl():
 
 
         btn_menu_update = Button(tab_main_menu, text="Update record", command=Menu_cl.update_record)
-        btn_menu_play = Button(tab_main_menu, text="PLAY", command=game)
+        btn_menu_play = Button(tab_main_menu, text="PLAY", command=game_thread)
         btn_menu_support = Button(tab_main_menu, text="SUPPORT", command=Menu_cl.support)
         btn_menu_quit = Button(tab_main_menu, text="QUIT", command=exit)
 
@@ -145,8 +146,8 @@ class Menu_cl():
         btn_settings_chnge_folder = Button(tab_settings_menu, text="Change game folder...", command=Menu_cl.change_game_path)
         btn_settings_apply = Button(tab_settings_menu, text="Apply", command=Menu_cl.apply)
         btn_settings_reset = Button(tab_settings_menu, text="Reset all (current record and etc...)", command=default_s)
-        btn_settings_vault = Button(tab_settings_menu, text="Vault", command=vault_gtk)
-        btn_settings_console = Button(tab_settings_menu, text="Console", command=console)
+        btn_settings_vault = Button(tab_settings_menu, text="Vault", command=vault_gtk_thread)
+        btn_settings_console = Button(tab_settings_menu, text="Console", command=console_thread)
 
         btn_settings_chnge_folder.place(x=230, y=38)
         btn_settings_apply.place(x=350, y=194)
@@ -183,13 +184,22 @@ def game():
     subprocess.call(fold, shell=True)
     print(fold)
 
+def game_thread():
+    Thread(target=game).start()
+
 def vault_gtk():
     fold = "python " + '"' + Menu_cl.game_path + "\\vault-gtk.py" + '"'
     subprocess.call(fold, shell=True)
 
+def vault_gtk_thread():
+    Thread(target=vault_gtk).start() 
+
 def console():
     fold = "python " + '"' + Menu_cl.game_path + "\console.py" + '"'
     subprocess.call(fold, shell=True)
+
+def console_thread():
+    Thread(target=console).start()
 
 
 default = Menu_cl(path.join(path.dirname(__file__)), "Windows x64", False, "")

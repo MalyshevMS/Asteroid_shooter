@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import scrolledtext
 from os import path
 import subprocess
-import keyboard
+from threading import Thread
 
 folder = path.join(path.dirname(__file__))
 bash = ">>> "
@@ -23,6 +23,10 @@ def echo(txt, bash_ = False):
         out.insert(END, bash + txt + "\n")
     else:
         out.insert(END, txt + "\n")
+
+def menu(): subprocess.call("python " + '"' + folder + "\menu.py" + '"', shell=True)
+def game(): subprocess.call("python " + '"' +folder + "\game.py" + '"', shell=True)
+def vault_gtk(): subprocess.call("python " + '"' + folder + "\\vault-gtk.py" + '"', shell=True)
 
 def exe(com: str):
     """executing command (com) in console window"""
@@ -127,18 +131,14 @@ def exe(com: str):
         
         elif com == "game":
             echo("starting game...")
-            echo("to use console close game window")
-            subprocess.call("python " + '"' +folder + "\game.py" + '"', shell=True)
-        
+            Thread(target=game).start()        
         elif com == "menu":
             echo("starting menu...")
-            echo("to use console close menu window")
-            subprocess.call("python " + '"' + folder + "\menu.py" + '"', shell=True)
+            Thread(target=menu).start()
 
         elif com == "vault-gtk":
             echo("starting vault-gtk...")
-            echo("to use console close vault-gtk window")
-            subprocess.call("python " + '"' + folder + "\\vault-gtk.py" + '"', shell=True)
+            Thread(target=vault_gtk).start()
 
         elif com == "shell" or com == "cmd":
             bash = "cmd: "
